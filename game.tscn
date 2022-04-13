@@ -1,0 +1,133 @@
+[gd_scene load_steps=20 format=3 uid="uid://cxk7rmpjtfrt"]
+
+[ext_resource type="Shader" path="res://shaders/game_buffer.gdshader" id="1_1d2xc"]
+[ext_resource type="Script" path="res://Game.gd" id="1_3ecok"]
+[ext_resource type="Shader" path="res://shaders/game.gdshader" id="2_te7f7"]
+[ext_resource type="Shader" path="res://shaders/control_buffer.gdshader" id="3_o7eck"]
+[ext_resource type="Script" path="res://GameCanvas.gd" id="3_vwxjl"]
+[ext_resource type="Script" path="res://GameBuffer.gd" id="4_potgn"]
+[ext_resource type="Shader" path="res://shaders/game_view.gdshader" id="7_bu0vm"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_1hnsn"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_6wdb6"]
+resource_local_to_scene = true
+shader = ExtResource( "2_te7f7" )
+shader_param/iChannel0 = SubResource( "ViewportTexture_1hnsn" )
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_2ngh7"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_76b4y"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4lwj"]
+resource_local_to_scene = true
+shader = ExtResource( "1_1d2xc" )
+shader_param/iFrame = null
+shader_param/iTimeDelta = null
+shader_param/iMouse = null
+shader_param/iChannel0 = SubResource( "ViewportTexture_2ngh7" )
+shader_param/iChannel1 = SubResource( "ViewportTexture_76b4y" )
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_o4m64"]
+shader = ExtResource( "3_o7eck" )
+shader_param/pressSpace = null
+shader_param/moveRight = null
+shader_param/moveLeft = null
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_degkc"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gebkn"]
+resource_local_to_scene = true
+shader = ExtResource( "7_bu0vm" )
+shader_param/Texture = SubResource( "ViewportTexture_degkc" )
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_cuni6"]
+viewport_path = NodePath("SubViewport3")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_xde2v"]
+resource_local_to_scene = true
+shader = ExtResource( "7_bu0vm" )
+shader_param/Texture = SubResource( "ViewportTexture_cuni6" )
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_p6tij"]
+viewport_path = NodePath("SubViewport2")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_15qie"]
+resource_local_to_scene = true
+shader = ExtResource( "7_bu0vm" )
+shader_param/Texture = SubResource( "ViewportTexture_p6tij" )
+
+[node name="Game" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+script = ExtResource( "1_3ecok" )
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1024, 600)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="GameCanvas" type="ColorRect" parent="SubViewport"]
+material = SubResource( "ShaderMaterial_6wdb6" )
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource( "3_vwxjl" )
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = false
+
+[node name="SubViewport2" type="SubViewport" parent="."]
+size = Vector2i(15, 15)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="GameBuffer" type="ColorRect" parent="SubViewport2"]
+material = SubResource( "ShaderMaterial_o4lwj" )
+script = ExtResource( "4_potgn" )
+
+[node name="SubViewport3" type="SubViewport" parent="."]
+size = Vector2i(256, 3)
+render_target_clear_mode = 1
+render_target_update_mode = 4
+
+[node name="ControlBuffer" type="ColorRect" parent="SubViewport3"]
+material = SubResource( "ShaderMaterial_o4m64" )
+offset_right = 256.0
+offset_bottom = 3.0
+color = Color(0, 0, 0, 1)
+metadata/_edit_layout_mode = 0
+metadata/_edit_use_custom_anchors = false
+
+[node name="GameView" type="ColorRect" parent="."]
+material = SubResource( "ShaderMaterial_gebkn" )
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = false
+
+[node name="GameView2" type="ColorRect" parent="."]
+visible = false
+material = SubResource( "ShaderMaterial_xde2v" )
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = false
+
+[node name="GameView3" type="ColorRect" parent="."]
+visible = false
+material = SubResource( "ShaderMaterial_15qie" )
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_layout_mode = 1
+metadata/_edit_use_custom_anchors = false

@@ -1,0 +1,12 @@
+102b54792f6b2ef812636a2bdaeb9d34
+::res://::1649848447
+Game.gd::GDScript::-1::1649846997::0::1::::<>Control<>::
+game.tscn::PackedScene::188523603080977905::1649848444::0::1::::<><>::res://shaders/game_buffer.gdshader<>res://Game.gd<>res://shaders/game.gdshader<>res://shaders/control_buffer.gdshader<>res://GameCanvas.gd<>res://GameBuffer.gd<>res://shaders/game_view.gdshader
+GameBuffer.gd::GDScript::-1::1649847804::0::1::::<>ColorRect<>::
+GameCanvas.gd::GDScript::-1::1649847816::0::1::::<>ColorRect<>::
+icon.png::CompressedTexture2D::46816822344382038::1649834346::1649834350::1::::<><>::
+::res://shaders/::1649848169
+control_buffer.gdshader::Shader::-1::1649848058::0::1::::<><>::
+game.gdshader::Shader::-1::1649846998::0::1::::<><>::
+game_buffer.gdshader::Shader::-1::1649847126::0::1::::<><>::
+game_view.gdshader::Shader::-1::1649845415::0::1::::<><>::
